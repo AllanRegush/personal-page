@@ -8,7 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import styled, { ThemeProvider, injectGlobal } from 'styled-components';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 import Header from "./header"
 
@@ -25,7 +25,7 @@ const Inner = styled.div`
   max-width: ${props => props.theme.maxWidth};
 `;
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 10px;
@@ -53,15 +53,18 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <ThemeProvider theme={theme}>
-      <StyledPage>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <Inner>
-          {children}
-        </Inner>
-      </StyledPage>
-    </ThemeProvider>
-  )
+    <React.Fragment>
+    <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <StyledPage>
+          <Header siteTitle={data.site.siteMetadata.title} />
+          <Inner>
+            {children}
+          </Inner>
+        </StyledPage>
+      </ThemeProvider>
+    </React.Fragment>    
+  );
 }
 
 Layout.propTypes = {
