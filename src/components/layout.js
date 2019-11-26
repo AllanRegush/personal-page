@@ -14,6 +14,7 @@ import Header from "./header"
 
 const theme = {
   maxWidth: '1000px',
+  minHeight: '80vh',
 }
 
 const StyledPage = styled.div`
@@ -23,12 +24,15 @@ const StyledPage = styled.div`
 
 const Inner = styled.div`
   max-width: ${props => props.theme.maxWidth};
+  min-height: ${props => props.theme.minHeight};
 `;
 
 const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 10px;
+    width: 100%;
+    min-height: 100%;
   }
   *, *:before, *:after {
     box-sizing: inherit;
