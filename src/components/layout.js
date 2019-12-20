@@ -13,7 +13,6 @@ import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import Header from "./header"
 
 const theme = {
-  maxWidth: '1000px',
   minHeight: '80vh',
 }
 
@@ -22,10 +21,6 @@ const StyledPage = styled.div`
   color: black;
 `;
 
-const Inner = styled.div`
-  max-width: ${props => props.theme.maxWidth};
-  min-height: ${props => props.theme.minHeight};
-`;
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -62,9 +57,7 @@ const Layout = ({ children }) => {
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Header siteTitle={data.site.siteMetadata.title} />
-          <Inner>
             {children}
-          </Inner>
         </StyledPage>
       </ThemeProvider>
     </React.Fragment>    
